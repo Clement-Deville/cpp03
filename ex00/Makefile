@@ -6,11 +6,11 @@
 #    By: cdeville <cdeville@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/12 16:23:30 by peanut            #+#    #+#              #
-#    Updated: 2024/10/15 16:07:26 by cdeville         ###   ########.fr        #
+#    Updated: 2024/10/17 15:58:01 by cdeville         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME=fixed_intro
+NAME=ClapTrap
 
 CC=c++
 

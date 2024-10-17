@@ -6,7 +6,7 @@
 /*   By: cdeville <cdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 13:10:36 by cdeville          #+#    #+#             */
-/*   Updated: 2024/10/15 17:05:38 by cdeville         ###   ########.fr       */
+/*   Updated: 2024/10/17 16:31:03 by cdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,15 @@ ClapTrap::ClapTrap(const ClapTrap &Cpy)
 	this->_attack_dmg = Cpy._energy_point;
 }
 
+ClapTrap::ClapTrap(std::string name)
+{
+	std::cout << "\e[0;32mName constructor called\e[0m" << std::endl;
+	this->_name = name;
+	this->_hit_point = 10;
+	this->_energy_point = 10;
+	this->_attack_dmg = 0;
+}
+
 ClapTrap::~ClapTrap()
 {
 	std::cout << "\e[0;31mDestructor called\e[0m" << std::endl;
@@ -47,39 +56,90 @@ ClapTrap & ClapTrap::operator = (const ClapTrap &Cpy)
 
 void	ClapTrap::attack(const std::string& target)
 {
+	if (this->_name.empty())
+	{
+		std::cerr << ATCK_INIT_MSG;
+		return ;
+	}
 	if (target.empty())
-		std::cerr << "You must specify a valid target" << std::endl;
-	std::cout << "ClapTrap "<< this->_name
-		<< "attacks " << target << ", causing "
-		<< this->_attack_dmg << " points of damage!" << std::endl;
+	{
+		std::cerr << ATCK_TRGT_MSG;
+		return ;
+	}
+	if (this->_hit_point == 0)
+	{
+		std::cerr << ATCK_DEAD_MSG;
+		return ;
+	}
+	if (this->_energy_point == 0)
+	{
+		std::cerr << ATCK_NO_NRG_MSG;
+		return ;
+	}
+	this->_energy_point--;
+	std::cout << "ClapTrap "<< UGRN + this->_name + reset
+		<< " attacks " << UYEL + target + reset << ", causing " << BRED
+		<< this->_attack_dmg << reset
+		<< (this->_attack_dmg > 1 ? " points" : " point")
+		<< " of damage!" << std::endl;
 }
 
 void	ClapTrap::takeDamage(unsigned int amount)
 {
-	short	dmg_taken;
+	unsigned short	dmg_taken;
 
+	if (this->_name.empty())
+	{
+		std::cerr << DMG_INIT_MSG;
+		return ;
+	}
 	if (!this->_hit_point)
 	{
-		std::cout << "ClapTrap " << this->_name <<
-			" is dead, stop hiting him/her!" << std::endl;
+		std::cout << DMG_DEAD_ERR_MSG;
+		return ;
 	}
 	if (this->_hit_point > amount)
-	{
 		dmg_taken = amount;
-		std::cout << "ClapTrap " << this->_name
-		<< " is taking " << dmg_taken << std::endl;
-	}
 	else
 		dmg_taken = _hit_point;
-	std::cout << "ClapTrap " << this->_name
-	<< " is taking " << dmg_taken << std::endl;
+	std::cout << "ClapTrap " << UGRN + this->_name + reset
+	<< " is taking " << BBLU << dmg_taken << reset 
+	<< (dmg_taken > 1 ? " damages" : " damage")
+		<< std::endl;
 	this->_hit_point -= dmg_taken;
 	if (!this->_hit_point)
-		std::cout << "ClapTrap " << this->_name
-		<< " died.." << std::endl;
+		std::cout << DMG_DYING_MSG;
 }
 
 void	ClapTrap::beRepaired(unsigned int amount)
 {
-	
+	if (this->_name.empty())
+	{
+		std::cerr << REPAIR_INIT_MSG;
+		return ;
+	}
+	if (amount == 0)
+	{
+		std::cerr << REPAIR_NO_ENERGY_MSG;
+		return ;
+	}
+	if (this->_hit_point == 0)
+	{
+		std::cerr << REPAIR_DEAD_MSG;
+		return ;
+	}
+	if (this->_energy_point == 0)
+	{
+		std::cerr << REPAIR_NO_ENERGY_MSG;
+		return ;
+	}
+	this->_energy_point--;
+	std::cout << "ClapTrap " << UGRN + this->_name + reset
+		<< " repaired himself " << MAG << amount << reset 
+		<< (amount > 1 ? " hit points" : " hit point")	<< std::endl;
+}
+
+unsigned short	ClapTrap::getAttack(void) const
+{
+	return (this->_attack_dmg);
 }
