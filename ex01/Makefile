@@ -6,11 +6,11 @@
 #    By: cdeville <cdeville@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/12 16:23:30 by peanut            #+#    #+#              #
-#    Updated: 2024/10/17 18:15:11 by cdeville         ###   ########.fr        #
+#    Updated: 2024/10/18 12:06:51 by cdeville         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME=ClapTrap
+NAME=ScavTrap
 
 CC=c++
 

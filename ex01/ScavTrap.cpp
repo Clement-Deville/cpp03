@@ -6,7 +6,7 @@
 /*   By: cdeville <cdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 17:33:56 by cdeville          #+#    #+#             */
-/*   Updated: 2024/10/17 18:21:52 by cdeville         ###   ########.fr       */
+/*   Updated: 2024/10/18 12:04:07 by cdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,54 @@ ScavTrap::~ScavTrap()
 	std::cout << "\e[0;31mScavTrap Destructor called\e[0m" << std::endl;
 }
 
-
 void	ScavTrap::attack(const std::string& target)
 {
-    (void)target;
+	if (this->_name.empty())
+	{
+		std::cerr << S_ATCK_INIT_MSG;
+		return ;
+	}
+	if (target.empty())
+	{
+		std::cerr << S_ATCK_TRGT_MSG;
+		return ;
+	}
+	if (this->_hit_point == 0)
+	{
+		std::cerr << S_ATCK_DEAD_MSG;
+		return ;
+	}
+	if (this->_energy_point == 0)
+	{
+		std::cerr << S_ATCK_NO_NRG_MSG;
+		return ;
+	}
+	this->_energy_point--;
+	std::cout << "ScavTrap "<< UGRN + this->_name + reset
+		<< " attacks " << UYEL + target + reset << ", causing " << BRED
+		<< this->_attack_dmg << reset
+		<< (this->_attack_dmg > 1 ? " points" : " point")
+		<< " of damage!" << std::endl;
 }
-void    ScavTrap::guardGate(void)
+
+void	ScavTrap::guardGate(void)
 {
+	if (this->_name.empty())
+	{
+		std::cerr << S_GRD_INIT_MSG;
+		return ;
+	}
+	if (this->_hit_point == 0)
+	{
+		std::cerr << S_GRD_DEAD_MSG;
+		return ;
+	}
+	if (this->_energy_point == 0)
+	{
+		std::cerr << S_GRD_NO_NRG_MSG;
+		return ;
+	}
+	this->_energy_point--;
+	std::cout << "ScavTrap "<< UGRN + this->_name + reset
+		<< " is now garding the gate, Benjamin is safe." << std::endl;
 }
