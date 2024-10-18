@@ -6,7 +6,7 @@
 /*   By: cdeville <cdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 13:10:33 by cdeville          #+#    #+#             */
-/*   Updated: 2024/10/18 17:36:04 by cdeville         ###   ########.fr       */
+/*   Updated: 2024/10/17 18:23:15 by cdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 
 class ClapTrap
 {
-private:
-	static const char	ClapTrap::className[];
 protected:
 	std::string	_name;
 	unsigned short	_hit_point;
@@ -37,8 +35,6 @@ public:
 	void				beRepaired(unsigned int amount);
 	unsigned short		getAttack(void) const;
 };
-
-const char	ClapTrap::className[] = "ClapTrap";
 
 
 /*MACRO MESSAGES*/
@@ -66,7 +62,7 @@ const char	ClapTrap::className[] = "ClapTrap";
 # define DMG_DYING_MSG \
 "ClapTrap " << UGRN + this->_name + reset \
 	<< BHRED << " died.." << reset << std::endl
-
+	
 //REPAIR
 
 # define REPAIR_INIT_MSG \

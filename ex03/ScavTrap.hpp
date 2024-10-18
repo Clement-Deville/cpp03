@@ -6,7 +6,7 @@
 /*   By: cdeville <cdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 17:22:34 by cdeville          #+#    #+#             */
-/*   Updated: 2024/10/18 17:39:45 by cdeville         ###   ########.fr       */
+/*   Updated: 2024/10/18 13:14:42 by cdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 
 class ScavTrap : public ClapTrap
 {
-private:
-	static const char	ScavTrap::className[];
 public:
 	ScavTrap(void);
 	ScavTrap(const std::string name);
@@ -28,8 +26,6 @@ public:
 	void	attack(const std::string& target);
 	void	guardGate(void);
 };
-
-const char	ScavTrap::className[] = "ScavTrap";
 
 #endif
 

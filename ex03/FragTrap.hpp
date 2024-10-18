@@ -6,7 +6,7 @@
 /*   By: cdeville <cdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 12:11:38 by cdeville          #+#    #+#             */
-/*   Updated: 2024/10/18 17:35:01 by cdeville         ###   ########.fr       */
+/*   Updated: 2024/10/18 13:37:52 by cdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 class FragTrap : public ClapTrap
 {
 private:
-	static const char className[];
+	/* data */
 public:
 	FragTrap();
 	FragTrap(const FragTrap &Cpy);
@@ -28,8 +28,6 @@ public:
 
 	void	highFivesGuys(void);
 };
-
-const char	FragTrap::className[] = "FragTrap";
 
 //GUARD
 
