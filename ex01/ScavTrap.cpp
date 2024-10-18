@@ -6,7 +6,7 @@
 /*   By: cdeville <cdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 17:33:56 by cdeville          #+#    #+#             */
-/*   Updated: 2024/10/18 12:04:07 by cdeville         ###   ########.fr       */
+/*   Updated: 2024/10/18 13:15:14 by cdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,16 @@ ScavTrap::ScavTrap(const std::string name)
 ScavTrap::~ScavTrap()
 {
 	std::cout << "\e[0;31mScavTrap Destructor called\e[0m" << std::endl;
+}
+
+ScavTrap & ScavTrap::operator = (const ScavTrap &Cpy)
+{
+	std::cout << "\e[0;32mCopy assignement operator called\e[0m";
+	this->_name = Cpy._name;
+	this->_hit_point = Cpy._hit_point;
+	this->_energy_point = Cpy._energy_point;
+	this->_attack_dmg = Cpy._energy_point;
+	return (*this);
 }
 
 void	ScavTrap::attack(const std::string& target)

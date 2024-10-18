@@ -6,7 +6,7 @@
 /*   By: cdeville <cdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 17:22:34 by cdeville          #+#    #+#             */
-/*   Updated: 2024/10/18 12:04:59 by cdeville         ###   ########.fr       */
+/*   Updated: 2024/10/18 13:14:42 by cdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ public:
 	ScavTrap(const ScavTrap &Cpy);
 	~ScavTrap();
 
+	ScavTrap & operator = (const ScavTrap &Cpy);
 	void	attack(const std::string& target);
 	void	guardGate(void);
 };
