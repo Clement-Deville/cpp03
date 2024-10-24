@@ -6,15 +6,17 @@
 /*   By: cdeville <cdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 13:10:36 by cdeville          #+#    #+#             */
-/*   Updated: 2024/10/17 18:14:19 by cdeville         ###   ########.fr       */
+/*   Updated: 2024/10/23 17:23:11 by cdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
+const char	ClapTrap::_className[] = "ClapTrap";
+
 ClapTrap::ClapTrap(void)
 {
-	std::cout << "\e[0;32mClapTrap Default constructor called\e[0m" << std::endl;
+	std::cout << "\e[0;32m" << this->_className << " Default constructor called\e[0m" << std::endl;
 	this->_name = "";
 	this->_hit_point = 10;
 	this->_energy_point = 10;
@@ -23,16 +25,13 @@ ClapTrap::ClapTrap(void)
 
 ClapTrap::ClapTrap(const ClapTrap &Cpy)
 {
-	std::cout << "\e[0;32mClapTrap Copy constructor called\e[0m" << std::endl;
-	this->_name = Cpy._name;
-	this->_hit_point = Cpy._hit_point;
-	this->_energy_point = Cpy._energy_point;
-	this->_attack_dmg = Cpy._energy_point;
+	std::cout << "\e[0;32m" << this->_className << " Copy constructor called\e[0m" << std::endl;
+	*this = Cpy;
 }
 
 ClapTrap::ClapTrap(const std::string name)
 {
-	std::cout << "\e[0;32mClapTrap Name constructor called\e[0m" << std::endl;
+	std::cout << "\e[0;32m" << this->_className << " Name constructor called\e[0m" << std::endl;
 	this->_name = name;
 	this->_hit_point = 10;
 	this->_energy_point = 10;
@@ -41,12 +40,14 @@ ClapTrap::ClapTrap(const std::string name)
 
 ClapTrap::~ClapTrap()
 {
-	std::cout << "\e[0;31mClapTrap Destructor called\e[0m" << std::endl;
+	std::cout << "\e[0;31m" << this->_className << " Destructor called\e[0m" << std::endl;
 }
 
 ClapTrap & ClapTrap::operator = (const ClapTrap &Cpy)
 {
 	std::cout << "\e[0;32mCopy assignement operator called\e[0m";
+	if (this == &Cpy)
+		return (*this);
 	this->_name = Cpy._name;
 	this->_hit_point = Cpy._hit_point;
 	this->_energy_point = Cpy._energy_point;
@@ -77,7 +78,7 @@ void	ClapTrap::attack(const std::string& target)
 		return ;
 	}
 	this->_energy_point--;
-	std::cout << "ClapTrap "<< UGRN + this->_name + reset
+	std::cout << this->_className << " " << UGRN + this->_name + reset
 		<< " attacks " << UYEL + target + reset << ", causing " << BRED
 		<< this->_attack_dmg << reset
 		<< (this->_attack_dmg > 1 ? " points" : " point")
@@ -102,8 +103,8 @@ void	ClapTrap::takeDamage(unsigned int amount)
 		dmg_taken = amount;
 	else
 		dmg_taken = _hit_point;
-	std::cout << "ClapTrap " << UGRN + this->_name + reset
-	<< " is taking " << BBLU << dmg_taken << reset 
+	std::cout << this->_className << " "  << UGRN + this->_name + reset
+	<< " is taking " << BBLU << dmg_taken << reset
 	<< (dmg_taken > 1 ? " damages" : " damage")
 		<< std::endl;
 	this->_hit_point -= dmg_taken;
@@ -134,8 +135,8 @@ void	ClapTrap::beRepaired(unsigned int amount)
 		return ;
 	}
 	this->_energy_point--;
-	std::cout << "ClapTrap " << UGRN + this->_name + reset
-		<< " repaired himself " << MAG << amount << reset 
+	std::cout << this->_className << " "  << UGRN + this->_name + reset
+		<< " repaired himself " << MAG << amount << reset
 		<< (amount > 1 ? " hit points" : " hit point")	<< std::endl;
 }
 

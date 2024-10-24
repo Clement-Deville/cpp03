@@ -6,7 +6,7 @@
 /*   By: cdeville <cdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 12:11:38 by cdeville          #+#    #+#             */
-/*   Updated: 2024/10/18 17:35:01 by cdeville         ###   ########.fr       */
+/*   Updated: 2024/10/24 14:19:50 by cdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 class FragTrap : public ClapTrap
 {
 private:
-	static const char className[];
+	static const char	_className[];
 public:
 	FragTrap();
 	FragTrap(const FragTrap &Cpy);
@@ -29,18 +29,16 @@ public:
 	void	highFivesGuys(void);
 };
 
-const char	FragTrap::className[] = "FragTrap";
-
 //GUARD
 
 # define F_HF_INIT_MSG \
-"You must initialize this FragTrap before doing a high fives"\
+"You must initialize this " << this->_className << " before doing a high fives"\
 	<< std::endl
 # define F_HF_DEAD_MSG \
-"FragTrap " << UGRN + this->_name + reset << \
+this->_className << " "  << UGRN + this->_name + reset << \
 	" can't do a high fives cause it is dead." << std::endl
 # define S_HF_NO_NRG_MSG \
-"FragTrap " << UGRN + this->_name + reset << \
+this->_className << " "  << UGRN + this->_name + reset << \
 	" can't do a high fives cause it has no energy left.." << std::endl
 
 #endif

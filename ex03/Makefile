@@ -6,11 +6,11 @@
 #    By: cdeville <cdeville@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/12 16:23:30 by peanut            #+#    #+#              #
-#    Updated: 2024/10/18 15:07:28 by cdeville         ###   ########.fr        #
+#    Updated: 2024/10/24 12:39:03 by cdeville         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME=FragTrap
+NAME=DiamondTrap
 
 CC=c++
 
@@ -23,7 +23,8 @@ SRC_DIR = ./
 SRC =	main.cpp \
 		ClapTrap.cpp \
 		ScavTrap.cpp \
-		FragTrap.cpp
+		FragTrap.cpp	\
+		DiamondTrap.cpp
 
 SRCS = $(addprefix $(SRC_DIR), $(SRC))
 

@@ -6,33 +6,32 @@
 /*   By: cdeville <cdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 17:33:56 by cdeville          #+#    #+#             */
-/*   Updated: 2024/10/18 13:15:14 by cdeville         ###   ########.fr       */
+/*   Updated: 2024/10/24 17:04:51 by cdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap(void)
+const char	ScavTrap::_className[] = "ScavTrap";
+
+ScavTrap::ScavTrap(void) : ClapTrap()
 {
-	std::cout << "\e[0;32mScavTrap Default constructor called\e[0m" << std::endl;
+	std::cout << "\e[0;32m" << this->_className << " Default constructor called\e[0m" << std::endl;
 	this->_name = "";
 	this->_hit_point = 100;
 	this->_energy_point = 50;
 	this->_attack_dmg = 20;
 }
 
-ScavTrap::ScavTrap(const ScavTrap &Cpy) : ClapTrap()
+ScavTrap::ScavTrap(const ScavTrap &Cpy): ClapTrap(Cpy)
 {
-	std::cout << "\e[0;32mScavTrap Copy constructor called\e[0m" << std::endl;
-	this->_name = Cpy._name;
-	this->_hit_point = Cpy._hit_point;
-	this->_energy_point = Cpy._energy_point;
-	this->_attack_dmg = Cpy._energy_point;
+	std::cout << "\e[0;32m" << this->_className << " Copy constructor called\e[0m" << std::endl;
+	*this = Cpy;
 }
 
-ScavTrap::ScavTrap(const std::string name)
+ScavTrap::ScavTrap(const std::string name): ClapTrap(name)
 {
-	std::cout << "\e[0;32mScavTrap Name constructor called\e[0m" << std::endl;
+	std::cout << "\e[0;32m" << this->_className << " Name constructor called\e[0m" << std::endl;
 	this->_name = name;
 	this->_hit_point = 100;
 	this->_energy_point = 50;
@@ -41,13 +40,16 @@ ScavTrap::ScavTrap(const std::string name)
 
 ScavTrap::~ScavTrap()
 {
-	std::cout << "\e[0;31mScavTrap Destructor called\e[0m" << std::endl;
+	std::cout << "\e[0;31m" << this->_className << " Destructor called\e[0m" << std::endl;
 }
 
 ScavTrap & ScavTrap::operator = (const ScavTrap &Cpy)
 {
-	std::cout << "\e[0;32mCopy assignement operator called\e[0m";
-	this->_name = Cpy._name;
+	std::cout << "\e[0;32mScavTrap Copy assignement operator called\e[0m" << std::endl;;
+	if (this == &Cpy)
+		return (*this);
+	this->ClapTrap::operator=(Cpy);
+	this->_name = Cpy._name + "_Cpy";
 	this->_hit_point = Cpy._hit_point;
 	this->_energy_point = Cpy._energy_point;
 	this->_attack_dmg = Cpy._energy_point;
@@ -77,7 +79,7 @@ void	ScavTrap::attack(const std::string& target)
 		return ;
 	}
 	this->_energy_point--;
-	std::cout << "ScavTrap "<< UGRN + this->_name + reset
+	std::cout << this->_className << " " << UGRN + this->_name + reset
 		<< " attacks " << UYEL + target + reset << ", causing " << BRED
 		<< this->_attack_dmg << reset
 		<< (this->_attack_dmg > 1 ? " points" : " point")
@@ -102,6 +104,27 @@ void	ScavTrap::guardGate(void)
 		return ;
 	}
 	this->_energy_point--;
-	std::cout << "ScavTrap "<< UGRN + this->_name + reset
+	std::cout << this->_className << " " << UGRN + this->_name + reset
 		<< " is now garding the gate, Benjamin is safe." << std::endl;
+}
+
+void	ScavTrap::print_names(void)
+{
+	std::cout << this->_name << " adress: " << &this->_name << std::endl;
+	std::cout << this->ClapTrap::_name << " adress: " << &this->ClapTrap::_name  << std::endl;
+}
+
+void	ScavTrap::setDefaultHp(void)
+{
+	this->_hit_point = 100;
+}
+
+void	ScavTrap::setDefaultEp(void)
+{
+	this->_energy_point = 50;
+}
+
+void	ScavTrap::setDefaultAd(void)
+{
+	this->_attack_dmg = 20;
 }

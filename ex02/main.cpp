@@ -6,7 +6,7 @@
 /*   By: cdeville <cdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 13:10:29 by cdeville          #+#    #+#             */
-/*   Updated: 2024/10/18 13:39:47 by cdeville         ###   ########.fr       */
+/*   Updated: 2024/10/24 13:14:39 by cdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int main(void)
 {
-	std::cout << "### TESTING CLAPTRAP ###\n" << std::endl;
+	std::cout << "### TESTING FRAGTRAP ###\n" << std::endl;
 	{
 		std::cout << "\033[34mConstructing\033[0m" << std::endl;
 		FragTrap a("Jo");

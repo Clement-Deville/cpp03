@@ -6,40 +6,42 @@
 /*   By: cdeville <cdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 13:18:08 by cdeville          #+#    #+#             */
-/*   Updated: 2024/10/18 13:36:02 by cdeville         ###   ########.fr       */
+/*   Updated: 2024/10/24 17:35:39 by cdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FragTrap.hpp"
 
-FragTrap::FragTrap(void)
+const char	FragTrap::_className[] = "FragTrap";
+
+FragTrap::FragTrap(void): ClapTrap()
 {
-	std::cout << "\e[0;32mFragTrap Default constructor called\e[0m" << std::endl;
+	std::cout << "\e[0;32m" << this->_className << "Default constructor called\e[0m" << std::endl;
 	this->_name = "";
-	this->_hit_point = 10;
-	this->_energy_point = 10;
-	this->_attack_dmg = 0;
+	this->_hit_point = 100;
+	this->_energy_point = 100;
+	this->_attack_dmg = 30;
 }
-FragTrap::FragTrap(const FragTrap &Cpy)
+FragTrap::FragTrap(const FragTrap &Cpy) : ClapTrap(Cpy)
 {
-	std::cout << "\e[0;32mFragTrap Copy constructor called\e[0m" << std::endl;
-	this->_name = Cpy._name;
-	this->_hit_point = Cpy._hit_point;
-	this->_energy_point = Cpy._energy_point;
-	this->_attack_dmg = Cpy._energy_point;
+	std::cout << "\e[0;32m" << this->_className << "Copy constructor called\e[0m" << std::endl;
+	*this = Cpy;
 }
-FragTrap::FragTrap(const std::string name)
+FragTrap::FragTrap(const std::string name) : ClapTrap(name)
 {
-	std::cout << "\e[0;32mFragTrap Name constructor called\e[0m" << std::endl;
+	std::cout << "\e[0;32m" << this->_className << "Name constructor called\e[0m" << std::endl;
 	this->_name = name;
 	this->_hit_point = 100;
-	this->_energy_point = 50;
-	this->_attack_dmg = 20;
+	this->_energy_point = 100;
+	this->_attack_dmg = 30;
 }
 
 FragTrap & FragTrap::operator = (const FragTrap &Cpy)
 {
 	std::cout << "\e[0;32mCopy assignement operator called\e[0m";
+	if (this == &Cpy)
+		return (*this);
+	ClapTrap::operator=(Cpy);
 	this->_name = Cpy._name;
 	this->_hit_point = Cpy._hit_point;
 	this->_energy_point = Cpy._energy_point;
@@ -49,7 +51,7 @@ FragTrap & FragTrap::operator = (const FragTrap &Cpy)
 
 FragTrap::~FragTrap()
 {
-	std::cout << "\e[0;31mFragTrap Destructor called\e[0m" << std::endl;
+	std::cout << "\e[0;31m" << this->_className << "Destructor called\e[0m" << std::endl;
 }
 
 
@@ -71,6 +73,21 @@ void	FragTrap::highFivesGuys(void)
 		return ;
 	}
 	this->_energy_point--;
-	std::cout << "FragTrap "<< UGRN + this->_name + reset
+	std::cout << this->_className << " " << UGRN + this->_name + reset
 		<< " is doing a high fives to everyone." << std::endl;
+}
+
+void	FragTrap::setDefaultHp(void)
+{
+	this->_hit_point = 100;
+}
+
+void	FragTrap::setDefaultEp(void)
+{
+	this->_energy_point = 100;
+}
+
+void	FragTrap::setDefaultAd(void)
+{
+	this->_attack_dmg = 30;
 }
