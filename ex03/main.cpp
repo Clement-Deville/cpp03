@@ -6,7 +6,7 @@
 /*   By: cdeville <cdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 13:10:29 by cdeville          #+#    #+#             */
-/*   Updated: 2024/10/24 18:20:01 by cdeville         ###   ########.fr       */
+/*   Updated: 2024/10/25 12:48:05 by cdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ int main(void)
 		std::cout << "\033[34mConstructing\033[0m" << std::endl;
 		DiamondTrap a("Jo");
 		DiamondTrap b("Cody");
-		DiamondTrap c;
-		c = b;
+		DiamondTrap c = b;
 		DiamondTrap empty;
 
 		std::cout << "\033[34mTesting\033[0m" << std::endl;

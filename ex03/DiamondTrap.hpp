@@ -6,7 +6,7 @@
 /*   By: cdeville <cdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 12:04:47 by cdeville          #+#    #+#             */
-/*   Updated: 2024/10/24 17:05:45 by cdeville         ###   ########.fr       */
+/*   Updated: 2024/10/25 12:49:21 by cdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,6 @@ class DiamondTrap : public ScavTrap, public FragTrap
 private :
 	static const char	_className[];
 	std::string			_name;
-	using FragTrap::_hit_point;
-	using ScavTrap::_energy_point;
-	using FragTrap::_attack_dmg;
 public:
 	DiamondTrap(void);
 	DiamondTrap(const DiamondTrap &Cpy);
